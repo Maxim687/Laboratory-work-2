@@ -1,0 +1,74 @@
+#1
+def partition(nums, low, high):  
+    
+    pivot = nums[(low + high) // 2]
+    i = low - 1
+    j = high + 1
+    while True:
+        i += 1
+        while nums[i] < pivot:
+            i += 1
+
+        j -= 1
+        while nums[j] > pivot:
+            j -= 1
+
+        if i >= j:
+            return j
+
+        
+        nums[i], nums[j] = nums[j], nums[i]
+
+def quick_sort(nums):  
+    
+    def _quick_sort(items, low, high):
+        if low < high:
+            
+            split_index = partition(items, low, high)
+            _quick_sort(items, low, split_index)
+            _quick_sort(items, split_index + 1, high)
+
+    _quick_sort(nums, 0, len(nums) - 1)
+
+random_list_of_nums = [15, 7, 111, 18, 21]  
+quick_sort(random_list_of_nums)  
+print(random_list_of_nums)
+#2
+a = []
+flag = 0
+for i in range(10):
+    a.append(int(input('Введіть елемент списку:')))
+for i in range(9):
+    if a[i+1] == a[0]:
+        flag = i + 1
+        break
+print(a)
+if flag > 0:
+    print(flag)
+#4
+spusok = [1,56,47,35,24,86,46,34,34,55,55,44,22,26]
+sortspusok = sorted(spusok)
+sortspusokrev = sorted (spusok, reverse=True)
+print ("Перші п'ять мінімальних елементів:")
+for i in range (0, 5):
+        print (sortspusok[i])
+#5
+print ("Перші п'ять максимальні елементи:")
+def sorting ():
+    for x in range (0, 5):
+        print (sortspusokrev[x])
+sorting()
+#6
+def arith_mean():
+    return float (sum(spusok)) / max(len(spusok), 1)
+print ("Середнє арифметичне:", arith_mean())
+def unique(obj: iter):
+        args = []
+        a = []
+        for a in obj:
+            if a not in args:
+                args.append(a)
+                yield a
+#7
+r = unique(spusok)
+print ("Список без повторних елементів:", [*r])
